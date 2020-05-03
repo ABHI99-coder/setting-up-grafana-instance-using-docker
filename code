@@ -1,0 +1,21 @@
+docker --version
+# checks the version of docker
+# we download the grafana image from dockerhub.com
+docker run -i --name=grafana -p 3000:3000 grafana/grafana
+clear
+docker ps
+# checks all images available
+docker rm -f grafana
+# we remove the running grafana container. The configuration file of grafana is in the loacation /etc/graphana. So we map this location as a volume in docker container so that w ewill be able to manage it from host.
+docker run -d --name grafana -p 3000:3000 -v grafana_config:/etc/grafana grafana/grafana
+docker ps
+docker volume ls
+cd/var/lib/docker/volumes/grafana_config/_data/
+ls
+cat grafana.ini
+clear
+docker ps
+# Now we run another grafana container on port 3001.In this container we will also map the volumes for dat and also for log files from grafana server. This will be suitable way to set up our grafana as we can easily manage the configurations database and logs from host machine.
+docker run -d --name grafana1 -p 3001:3000 -v grafana_config:/etc/grafana -v grafana _data:/var/lib/grafana -v grafana_log1:var/log/grafana/grafana
+docker volume ls
+cd/var/lib/docker/volumes/grafana_data1/_data/
