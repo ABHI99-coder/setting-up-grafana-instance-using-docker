@@ -1,1 +1,1 @@
-# setting-up-grafana-instance-using-docker
+# Setting-up-grafana-instance-using-DOCKER
